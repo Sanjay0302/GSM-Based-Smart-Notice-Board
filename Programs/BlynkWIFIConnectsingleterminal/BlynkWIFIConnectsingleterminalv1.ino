@@ -78,12 +78,6 @@ BLYNK_WRITE(V5) {
   }
 
 }
-// BLYNK_WRITE(V6) {
-//   pinValue2 = param.asString();
-// }
-// BLYNK_WRITE(V7) {
-//   pinValue3 = param.asString();
-// }
 
 void setup()
 {

@@ -1,4 +1,4 @@
-// only loop is changed
+// reduced the void loop and now will not print the message variable that is empty
 
 #define BLYNK_TEMPLATE_ID "TMPL358V3gw6r"
 #define BLYNK_TEMPLATE_NAME "v101"
@@ -8,21 +8,21 @@
 
 #include <WiFi.h>
 #include <BlynkSimpleEsp32.h>
-// #include <MD_Parola.h>
-// #include <MD_MAX72xx.h>
-// #include <SPI.h>
+#include <MD_Parola.h>
+#include <MD_MAX72xx.h>
+#include <SPI.h>
 
 #define MAX_MESSAGE_LENGTH 100
 
-// #define HARDWARE_TYPE MD_MAX72XX::FC16_HW
-// #define MAX_DEVICES 4 //If you're only using a single 32x8 display then please set this to 4.
+#define HARDWARE_TYPE MD_MAX72XX::FC16_HW
+#define MAX_DEVICES 4 //If you're only using a single 32x8 display then please set this to 4.
 
-// #define CLK_PIN   18 //green
-// #define DATA_PIN  19 //orange
-// #define CS_PIN    5 //yellow
+#define CLK_PIN   18 //green
+#define DATA_PIN  19 //orange
+#define CS_PIN    5 //yellow
 
-// // MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES); //@sanjaybyranna
-// MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
+// MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES); //@sanjaybyranna
+MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
@@ -92,22 +92,40 @@ void setup()
   Blynk.begin(auth, ssid, pass, "blynk.cloud", 8080);
   //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
 
-//   P.begin();
+  P.begin();
 
 }
 
-void loop()
-{
+// void loop()
+// {
+//   Blynk.run(); // Run the Blynk library's internal tasks
+//   P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); //initialise all text output to be in the middle
+//   P.displayAnimate();
+
+//   char* messages[] = {message1, message2, message3}; // Array of message pointers
+//   int numMessages = sizeof(messages) / sizeof(messages[0]); // Calculate the number of messages
+
+//   for (int i = 0; i < numMessages; i++) {
+//     P.print(messages[i]);
+//     Blynk.virtualWrite(V8, messages[i]); // Display the message on the matrix display
+//     delay(delayValue_ms); // Pause between switching to the next message
+//   }
+// }
+
+void loop() {
   Blynk.run(); // Run the Blynk library's internal tasks
-  // P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); //initialise all text output to be in the middle
-  // P.displayAnimate();
+  P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // Initialize all text output to be in the middle
+  P.displayAnimate();
 
   char* messages[] = {message1, message2, message3}; // Array of message pointers
   int numMessages = sizeof(messages) / sizeof(messages[0]); // Calculate the number of messages
 
   for (int i = 0; i < numMessages; i++) {
-//     P.print(messages[i]);
-    Blynk.virtualWrite(V8, messages[i]); // Display the message on the matrix display
-    delay(delayValue_ms); // Pause between switching to the next message
+    if (messages[i][0] != '\0') { // Check if the message is not empty
+      P.print(messages[i]);
+      Blynk.virtualWrite(V8, messages[i]); // Display the message on the matrix display
+      delay(delayValue_ms); // Pause between switching to the next message
+    }
   }
 }
+

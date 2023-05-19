@@ -30,9 +30,7 @@ char ssid[] = "sanjay";
 char pass[] = "12345678";
 char auth[] = BLYNK_AUTH_TOKEN;
 
-// String pinValue1;
-// String pinValue2;
-// String pinValue3;
+
 int delayValue;
 int delayValue_ms;
 
@@ -82,12 +80,7 @@ BLYNK_WRITE(V5) {
   }
 
 }
-// BLYNK_WRITE(V6) {
-//   pinValue2 = param.asString();
-// }
-// BLYNK_WRITE(V7) {
-//   pinValue3 = param.asString();
-// }
+
 
 void setup()
 {
@@ -113,7 +106,7 @@ void loop()
   int numMessages = sizeof(messages) / sizeof(messages[0]); // Calculate the number of messages
 
   for (int i = 0; i < numMessages; i++) {
-//     P.print(messages[i])
+//     P.print(messages[i]);
     Blynk.virtualWrite(V8, messages[i]); // Display the message on the matrix display
     delay(delayValue_ms); // Pause between switching to the next message
   }

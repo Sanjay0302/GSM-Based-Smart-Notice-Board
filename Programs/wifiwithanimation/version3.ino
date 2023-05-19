@@ -105,9 +105,9 @@ struct animations {
 
 animations animList[] = {
   //{anim_in,anim_out,textout,speed,pause,justify}
-  { PA_SCROLL_LEFT, PA_SCROLL_LEFT, message1, 3, 1, PA_LEFT },
-  { PA_SCROLL_LEFT, PA_SCROLL_LEFT, message2, 3, 1, PA_LEFT },
-  { PA_SCROLL_LEFT, PA_SCROLL_LEFT, message3, 3, 1, PA_LEFT },
+  { PA_SCROLL_LEFT, PA_SCROLL_LEFT, message1, 3, 0, PA_LEFT },
+  { PA_SCROLL_LEFT, PA_SCROLL_LEFT, message2, 3, 0, PA_LEFT },
+  { PA_SCROLL_LEFT, PA_SCROLL_LEFT, message3, 3, 0, PA_LEFT },
   // { PA_SCROLL_LEFT,PA_SCROLL_LEFT, "SC_LT",5,0,PA_LEFT},
   // { PA_BLINDS,PA_GROW_DOWN, "BLINDs",2,2,PA_CENTER},
   // { PA_SCROLL_DOWN,PA_SCROLL_DOWN_LEFT, "see",4,2,PA_LEFT},
@@ -125,11 +125,10 @@ void setup() {
   //Blynk.begin(auth, ssid, pass, IPAddress(192,168,1,100), 8080);
 
   P.begin();
-  // P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // Initialize all text output to be in the middle
-  // P.displayAnimate();
+
   for (uint8_t i = 0; i < ARRAY_SIZE(animList); i++) {
     animList[i].speed *= P.getSpeed();
-    animList[i].pause *= 500;
+    animList[i].pause *= 1000;
   }
 }
 
@@ -137,8 +136,7 @@ uint8_t i = 0;  //text effect index
 
 void loop() {
   Blynk.run();  // Run the Blynk library's internal tasks
-  // P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // Initialize all text output to be in the middle
-  // P.displayAnimate();
+
   int  delayValue_ms = (delayValue * 1000);
   char* messages[] = { message1, message2, message3 };       // Array of message pointers
   // int numMessages = sizeof(messages) / sizeof(messages[0]);  // Calculate the number of messages
@@ -147,7 +145,8 @@ void loop() {
     if (i == ARRAY_SIZE(animList)) i = 0;  //reset loop index
     if(messages[i][0] != '\0' && messages[i][0] != ' '){
         P.displayText(animList[i].textOut, animList[i].just, animList[i].speed, animList[i].pause, animList[i].anim_in, animList[i].anim_out);
-        delay(delayValue_ms);
+      Blynk.virtualWrite(V8, messages[i]); 
+      delay(delayValue_ms);
     }
 
       i++;  //then start next text effect

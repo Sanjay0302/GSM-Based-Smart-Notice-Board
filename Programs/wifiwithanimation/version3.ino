@@ -85,8 +85,9 @@ BLYNK_WRITE(V5) {
 // Reset the mesages
 BLYNK_WRITE(V7) {
   int reset = param.asInt();
-  Serial.println(reset);
+ 
   if (reset == 1) {
+     Serial.println("reset performed");
     strncpy(message1, " ", MAX_MESSAGE_LENGTH);
     strncpy(message2, " ", MAX_MESSAGE_LENGTH);
     strncpy(message3, " ", MAX_MESSAGE_LENGTH);

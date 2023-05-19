@@ -56,7 +56,7 @@ BLYNK_WRITE(V4) {
   delayValue_ms = (delayValue * 1000);
 }
 BLYNK_WRITE(V5) {
-//   pinValue1 = param.asString();
+
      if (!isMessage1Filled) {
     // message1 is empty, so store new message there
     strncpy(message1, param.asStr(), MAX_MESSAGE_LENGTH);
@@ -96,22 +96,7 @@ void setup()
 
 }
 
-// void loop()
-// {
-//   Blynk.run(); // Run the Blynk library's internal tasks
-//   P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); //initialise all text output to be in the middle
-//   P.displayAnimate();
-
-//   char* messages[] = {message1, message2, message3}; // Array of message pointers
-//   int numMessages = sizeof(messages) / sizeof(messages[0]); // Calculate the number of messages
-
-//   for (int i = 0; i < numMessages; i++) {
-//     P.print(messages[i]);
-//     Blynk.virtualWrite(V8, messages[i]); // Display the message on the matrix display
-//     delay(delayValue_ms); // Pause between switching to the next message
-//   }
-// }
-
+// this loop can discard the printing of empty variable amoung message 1 2 3
 void loop() {
   Blynk.run(); // Run the Blynk library's internal tasks
   P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // Initialize all text output to be in the middle
@@ -128,4 +113,23 @@ void loop() {
     }
   }
 }
+
+//this loop was not capable of discarding the empty varaible hence it was increasing the delay and NULL value while displaying in matrix  
+// void loop()
+// {
+//   Blynk.run(); // Run the Blynk library's internal tasks
+//   P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); //initialise all text output to be in the middle
+//   P.displayAnimate();
+
+//   char* messages[] = {message1, message2, message3}; // Array of message pointers
+//   int numMessages = sizeof(messages) / sizeof(messages[0]); // Calculate the number of messages
+
+//   for (int i = 0; i < numMessages; i++) {
+//     P.print(messages[i]);
+//     Blynk.virtualWrite(V8, messages[i]); // Display the message on the matrix display
+//     delay(delayValue_ms); // Pause between switching to the next message
+//   }
+// }
+
+
 

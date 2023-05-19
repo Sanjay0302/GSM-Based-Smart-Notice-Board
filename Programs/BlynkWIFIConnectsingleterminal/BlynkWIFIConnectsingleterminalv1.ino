@@ -28,9 +28,7 @@ char ssid[] = "sanjay";
 char pass[] = "12345678";
 char auth[] = BLYNK_AUTH_TOKEN;
 
-// String pinValue1;
-// String pinValue2;
-// String pinValue3;
+
 int delayValue;
 int delayValue_ms;
 
@@ -108,17 +106,17 @@ void loop()
 //   P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); //initialise all text output to be in the middle
 //   P.displayAnimate();
 
-//   P.print(pinValue1); //Output the string value found in the 1st Blynk IoT app terminal to the matrix display 
+//   P.print(message1); //Output the string value found in the 1st Blynk IoT app terminal to the matrix display 
 
   Blynk.virtualWrite(V8, message1); //Display the 1st string value from the matrix display to the V8 label (on IoT app)
   delay(delayValue_ms); //pause between switching from value 1 to value 2
   
-//   P.print(pinValue2); //Output the string value found in the 2nd Blynk IoT app terminal to the matrix display 
+//   P.print(message2); //Output the string value found in the 2nd Blynk IoT app terminal to the matrix display 
  
   Blynk.virtualWrite(V8, message2); //Display the 2nd string value from the matrix display to the V8 label (on IoT app)
   delay(delayValue_ms); //pause between switching from value 2 to value 3
   
-//   P.print(pinValue3); //Output the string value found in the 3rd Blynk IoT app terminal to the matrix display
+//   P.print(message3); //Output the string value found in the 3rd Blynk IoT app terminal to the matrix display
 
   Blynk.virtualWrite(V8, message3); //Display the 3rd string value from the matrix display to the V8 label (on IoT app)
   delay(delayValue_ms); //pause between switching from value 3 and back to value 1

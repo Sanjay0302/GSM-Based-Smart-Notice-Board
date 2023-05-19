@@ -1,4 +1,4 @@
-//recheck it onc 
+// previous commit not working
 
 #define BLYNK_TEMPLATE_ID "TMPL358V3gw6r"
   #define BLYNK_TEMPLATE_NAME "v101"
@@ -126,8 +126,8 @@
 
   void loop() {
     Blynk.run(); // Run the Blynk library's internal tasks
-    P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // Initialize all text output to be in the middle
-    P.displayAnimate();
+    // P.displayText("", PA_CENTER, 0, 0, PA_PRINT, PA_NO_EFFECT); // Initialize all text output to be in the middle
+    // P.displayAnimate();
 
     // char* messages[] = {message1, message2, message3}; // Array of message pointers
     // int numMessages = sizeof(messages) / sizeof(messages[0]); // Calculate the number of messages
@@ -141,4 +141,4 @@
 
 
 
-  } 
+  }

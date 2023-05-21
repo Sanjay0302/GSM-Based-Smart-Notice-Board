@@ -47,15 +47,9 @@ void loop() {
 
       // Check if the minute value has changed
       if (minutes != previousMinute) {
+        String timeString = String(hours) + ":" + (minutes < 10 ? "0" : "") + String(minutes) + " " + (am_pm ? "PM" : "AM");
         Serial.print("Current time: ");
-        Serial.print(hours);
-        Serial.print(":");
-        if (minutes < 10) {
-          Serial.print("0");
-        }
-        Serial.print(minutes);
-        Serial.print(" ");
-        Serial.println(am_pm ? "PM" : "AM");
+        Serial.println(timeString);
 
         // Update the previousMinute variable
         previousMinute = minutes;

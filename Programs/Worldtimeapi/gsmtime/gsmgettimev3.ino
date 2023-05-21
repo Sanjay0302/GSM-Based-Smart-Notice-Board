@@ -1,5 +1,8 @@
 // third program in folder
 // this will connect to the internet using gsm and also get the time data
+// not verified
+
+
 
 /* Comment this out to disable prints and save space */
 #define BLYNK_PRINT Serial

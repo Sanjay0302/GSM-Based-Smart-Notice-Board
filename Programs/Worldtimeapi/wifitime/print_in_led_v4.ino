@@ -1,6 +1,6 @@
 // here capable of printing the time in 12hr format
 // but invalid responce printed as 0AM 
-
+//this shows 12AM as 0:min AM
 
 #include <MD_Parola.h>
 #include <MD_MAX72xx.h>
@@ -70,10 +70,10 @@ String getTimeFromAPI() {
 
 String formatTime(const String& time) {
   int hours = time.substring(0, 2).toInt();
-  String period = "AM";
+  String period = "A";
   
   if (hours >= 12) {
-    period = "PM";
+    period = "P";
     if (hours > 12) {
       hours -= 12;
     }

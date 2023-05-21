@@ -34,7 +34,7 @@
   }
 
   void fetchtime(){
-    if (WiFi.status() == WL_CONNECTED) {
+// no need to check the wifi status 
 
         HTTPClient http;
 
@@ -81,5 +81,5 @@
         }
 
         http.end();
-      }
+      
   }

@@ -17,7 +17,7 @@
 
 const char* ssid = "YourWiFiSSID";
 const char* password = "YourWiFiPassword";
-const char* timeApiUrl = "http://worldtimeapi.org/api/ip";
+const char* timeApiUrl = "http://worldtimeapi.org/api/timezone/Asia/Kolkata";
 
 MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
@@ -84,6 +84,6 @@ String formatTime(const String& time) {
 }
 
 void displayTime(const String& time) {
-  Serial.println(time); // Print time to serial monitor
+  Serial.println(time)  ; // Print time to serial monitor
   P.displayText(time.c_str(), PA_CENTER, P.getSpeed(), P.getPause(), PA_PRINT, PA_NO_EFFECT);
 }

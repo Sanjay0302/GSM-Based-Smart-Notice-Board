@@ -1,7 +1,3 @@
-// not verified
-// not verified
-// not verified
-// not verified
 
 // connect through gsm and display on max led's
 #define BLYNK_PRINT Serial
@@ -47,7 +43,7 @@ MD_Parola P = MD_Parola(HARDWARE_TYPE, DATA_PIN, CLK_PIN, CS_PIN, MAX_DEVICES);
 
 char auth[] = BLYNK_AUTH_TOKEN;
 
-int delayValue;
+int delayValue =1 ;
 int delayValue_ms;
 
 bool isMessage1Filled = false;

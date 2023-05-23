@@ -1,6 +1,6 @@
-// when ground and swicth is connected then it means high and program starts connecting to network 
+// when ground and swicth is connected then it means high and program starts connecting to network
 // to avoid latency we used modem.init() instead of modem.restart();
-// If high --> connect to gsm --> connect to blynk 
+// If high --> connect to gsm --> connect to blynk
 // If low --> disconnect gsm --> disconnect to blynk
 
 #define BLYNK_PRINT Serial
@@ -22,14 +22,13 @@ char user[] = "";
 char pass[] = "";
 
 #include <HardwareSerial.h>
-HardwareSerial SerialAT(2); // RX, TX
+HardwareSerial SerialAT(2);  // RX, TX
 
 TinyGsm modem(SerialAT);
 
 const int switchPin = 25;
 
-void setup()
-{
+void setup() {
   // Debug console
   Serial.begin(115200);
   delay(10);
@@ -37,21 +36,22 @@ void setup()
   // Set GSM module baud rate
   SerialAT.begin(115200);
   delay(3000);
-   pinMode(switchPin, INPUT_PULLUP);
+  pinMode(switchPin, INPUT_PULLUP);
   int switchState = digitalRead(switchPin);
   // Restart takes quite some time
   // To skip it, call init() instead of restart()
-    if (switchState == HIGH) {
-  Serial.println("Initializing modem...");
-  modem.init();
-    }
+  if (switchState == HIGH) {
+    Serial.println("Initializing modem...");
+    modem.init();
+  }
 
   // Unlock your SIM card with a PIN
   //modem.simUnlock("1234");
 }
 
-void connectToGPRS()
-{
+void connectToGPRS() {
+  Serial.println("Initializing modem...");
+      modem.init();
   // Start GSM connection
   Serial.println("Connecting to GSM network...");
   if (!modem.gprsConnect(apn, user, pass)) {
@@ -70,8 +70,7 @@ void connectToGPRS()
   }
 }
 
-void disconnectFromGPRS()
-{
+void disconnectFromGPRS() {
   // Disconnect from Blynk
   Blynk.disconnect();
 
@@ -80,22 +79,24 @@ void disconnectFromGPRS()
   Serial.println("GSM network disconnected");
 }
 
-void loop()
-{
+void loop() {
   // Check if switch pin is high
-   pinMode(switchPin, INPUT_PULLUP);
+  pinMode(switchPin, INPUT_PULLUP);
   int switchState = digitalRead(switchPin);
-  
-  if (switchState == HIGH) {
-    if (!modem.isGprsConnected()) {
-  Serial.println("Initializing modem...");
-  modem.init();
+
+  if (switchState == HIGH) 
+  {
+    if (!modem.isGprsConnected()) 
+    {  
       connectToGPRS();
     }
-    
+
     Blynk.run();
-  } else {
-    if (modem.isGprsConnected()) {
+  } 
+  else 
+  {
+    if (modem.isGprsConnected()) 
+    {
       disconnectFromGPRS();
     }
   }

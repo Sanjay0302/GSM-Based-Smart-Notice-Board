@@ -10,16 +10,16 @@
 #include <BlynkSimpleEsp32.h>
 
 #define BLYNK_PRINT Serial
-#define BLYNK_TEMPLATE_ID "TMPL3JjrXZeCd"
+#define BLYNK_TEMPLATE_ID "TMPL3......."
 #define BLYNK_TEMPLATE_NAME "New Tempkete"
-#define BLYNK_AUTH_TOKEN "GwxIiAezvT6on24nZKE6RhytixgbMCWn"
+#define BLYNK_AUTH_TOKEN "GwxIiAe......"
 // function declaration
 String performOpenAIRequest();
 void parseOpenAIResponse(const String& response);
 WidgetTerminal terminal(V10);
 const char* ssid = "sanjay";
 const char* password = "12345678";
-const char* chatgpt_token = "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";
+const char* chatgpt_token = "sk-lFC.............";
 int MAX_TOKENS = 5;
 float TEMPERATURE = 0.0;
 const char* MODEL_NAME = "text-davinci-003";

@@ -17,22 +17,16 @@
 
 ### Led Connections
 
-// vcc - Esp32 3v3 - Grey
 
-//gnd  - Esp32 gnd - Red
-
-#define DATA_PIN 19  // orange 
-
-#define CS_PIN 5     // yellow
-
-#define CLK_PIN 18   // green
+1. `vcc`      - Esp 3v3
+1. `gnd`      - Esp gnd
+1. `DATA_PIN` - 19 
+1. `CS_PIN`   - 5  
+1. `CLK_PIN`  - 18   
 
 ### SIM800L connection
 
-Vcc - Battery 3.7v
-
-Gnd - Battery gnd - Esp32 Gnd
-
-Tx - Rx2 of Esp32
-
-Rx - Tx2 of Esp32
+1. `vcc` - Bat 3.7v
+1. `gnd` - Bat gnd & Esp gnd
+1. `Tx`  - Rx2 of Esp32
+1. `Rx`  - Tx2 of Esp32
